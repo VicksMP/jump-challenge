@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  googleId      String?   @unique
+  hubspotId     String?   @unique
+  accessToken   String?
+  refreshToken  String?
+  hubspotToken  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  conversations Conversation[]
+  tasks         Task[]
+  instructions  Instruction[]
+  emails        Email[]
+  contacts      Contact[]
+  meetings      Meeting[]
+  webhookEvents WebhookEvent[]
+}
