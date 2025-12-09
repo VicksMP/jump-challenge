@@ -16,18 +16,4 @@ model User {
   name          String?
   googleId      String?   @unique
   hubspotId     String?   @unique
-  accessToken   String?
-  refreshToken  String?
-  hubspotToken  String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  
-  // Relations
-  conversations Conversation[]
-  tasks         Task[]
-  instructions  Instruction[]
-  emails        Email[]
-  contacts      Contact[]
-  meetings      Meeting[]
-  webhookEvents WebhookEvent[]
 }
